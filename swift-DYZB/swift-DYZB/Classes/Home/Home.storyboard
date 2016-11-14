@@ -24,12 +24,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsX-rQ-H24" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1136" y="-193"/>
+            <point key="canvasLocation" x="-1984" y="-195"/>
         </scene>
-        <!--首页-->
+        <!--Home Controller-->
         <scene sceneID="Ogf-cg-e3c">
             <objects>
-                <viewController id="FnN-ny-7zf" sceneMemberID="viewController">
+                <viewController id="FnN-ny-7zf" customClass="HomeController" customModule="swift_DYZB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gJe-GU-9p2"/>
                         <viewControllerLayoutGuide type="bottom" id="9UZ-zA-eHq"/>
@@ -39,11 +39,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="首页" id="8fw-4e-sHF"/>
+                    <navigationItem key="navigationItem" id="8fw-4e-sHF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIa-FI-XV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354" y="-194"/>
+            <point key="canvasLocation" x="-454" y="-195"/>
         </scene>
     </scenes>
     <resources>
