@@ -9,26 +9,32 @@
 import UIKit
 
 private let kTitleViewH : CGFloat = 40
+
+
 class HomeController: UIViewController {
 
     // MARK:- 懒加载
-   fileprivate lazy var pageTitleView: PageTitleView = {
+   fileprivate lazy var pageTitleView: PageTitleView = {[weak self] in
     let titles = ["推荐","游戏","娱乐","趣玩"]
         let frame = CGRect(x: 0, y:kStatusBarH + kNavgationBarH , width: UIScreen.main.bounds.size.width, height: kTitleViewH)
         let titleView = PageTitleView(frame: frame, title: titles)
         titleView.backgroundColor = UIColor.white
+        titleView.delegate = self
         return titleView
     }()
-    lazy var pageContentView: PageContentView = {
-            let contentH = kScreenH - kStatusBarH - kNavgationBarH - kTitleViewH
+    lazy var pageContentView: PageContentView = {[weak self] in
+            let contentH = kScreenH - kStatusBarH - kNavgationBarH - kTitleViewH - kTabBarH
             let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavgationBarH + kTitleViewH, width: kScreenW, height: contentH)
         var childVcs = [UIViewController]()
-        for _ in 0..<4{
+        childVcs.append(RecommendController())
+        for _ in 0..<3{
             let vc = UIViewController()
             vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
             childVcs.append(vc)
         }
         let contentView = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
+        contentView.delegate = self
+        
         return contentView
     }()
     
@@ -69,3 +75,18 @@ extension HomeController{
     navigationItem.rightBarButtonItems = [historyItem,searchItem,qrcodeItem]
     }
 }
+
+// MARK:- PageTitleViewDelegate代理
+extension HomeController : PageTitleViewDelegate{
+    func pageTitleView(titleView: PageTitleView, selectedIndex index: Int) {
+        pageContentView.setCurrentIndex(currentIndex: index)
+    }
+}
+// MARK:- PageContentViewDelegate代理
+extension HomeController : PageContentViewDelegate{
+    func pageContentView(contentView: PageContentView, progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
+        pageTitleView.setTitleWithProgress(progress: progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
+    }
+}
+
+
