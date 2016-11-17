@@ -22,7 +22,7 @@ class CollectionBeautifulCell: UICollectionViewCell {
             guard let anchor = anchor else {
                 return
             }
-            //取出在线人数显示的文字
+            //2.取出在线人数显示的文字
             var onlineStr : String = ""
             if anchor.online >= 10000 {
                 onlineStr = "\(CGFloat(anchor.online / 10000))万在线"
@@ -30,6 +30,11 @@ class CollectionBeautifulCell: UICollectionViewCell {
                 onlineStr = "\(anchor.online)在线"
             }
             onlineLabel.text = onlineStr
+            //3.昵称显示
+            nickNameLabel.text = anchor.nickname
+            //4.所在城市
+            cityButton.setTitle(anchor.anchor_city, for: .normal)
+            
         }
     }
     

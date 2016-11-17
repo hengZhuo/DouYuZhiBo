@@ -112,6 +112,7 @@ extension RecommendController : UICollectionViewDataSource,UICollectionViewDeleg
              return cell
         }else{
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCollectionCell, for: indexPath) as! CollectionNormalCell
+             cell.anchor = anchor
              return cell
         }
        
