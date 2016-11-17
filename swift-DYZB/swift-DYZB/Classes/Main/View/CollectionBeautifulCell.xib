@@ -67,6 +67,9 @@
             </constraints>
             <size key="customSize" width="411" height="411"/>
             <connections>
+                <outlet property="cityButton" destination="CAm-rn-piJ" id="aeq-vG-LZg"/>
+                <outlet property="nickNameLabel" destination="zIj-cA-3e5" id="Y9z-eh-CHL"/>
+                <outlet property="onlineLabel" destination="s18-Wl-w2X" id="sdc-iW-Kiv"/>
                 <outlet property="photoImageView" destination="oe8-ri-DLs" id="FP0-jC-Ztc"/>
             </connections>
             <point key="canvasLocation" x="-91.5" y="-156.5"/>
