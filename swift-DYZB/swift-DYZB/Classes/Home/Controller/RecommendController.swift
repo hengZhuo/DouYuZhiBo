@@ -19,6 +19,8 @@ private let kHeaderViewID = "kHeaderViewID"
 
 class RecommendController: UIViewController {
     
+    fileprivate lazy var recommendViewModel:RecommendViewModel = RecommendViewModel()
+    
     // MARK:- 懒加载
    fileprivate lazy var collectionView: UICollectionView = {
         //1.创建布局
@@ -50,6 +52,7 @@ class RecommendController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          setupUI()
+        loadData()
             }
 }
 
@@ -64,6 +67,16 @@ extension RecommendController{
         
     }
 }
+
+// MARK:- 请求数据
+extension RecommendController{
+    fileprivate func loadData(){
+        
+        recommendViewModel.requestData()
+    }
+}
+
+
 
 // MARK:- UICollectionViewDataSource协议
 extension RecommendController : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
