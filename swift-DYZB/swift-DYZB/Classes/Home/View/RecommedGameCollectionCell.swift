@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RecommedGameCollectionCell: UICollectionViewCell {
-
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+   
+    var group : AnchorGroup?{
+        didSet{
+            titleLabel.text = group?.tag_name
+            let iconUrl = URL(string: group?.icon_url ?? "")
+            photoImageView.kf.setImage(with: iconUrl, placeholder: UIImage(named:"home_more_btn"), options: nil, progressBlock: nil, completionHandler: nil)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.photoImageView.layer.cornerRadius = 22.5
+        self.photoImageView.layer.masksToBounds = true
     }
+    
+   
 
 }

@@ -10,13 +10,18 @@ import UIKit
 
 class RecommendViewModel {
 
+    //推荐
      lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
+    //轮播
+    lazy var cycleModels : [CycleModel] = [CycleModel]()
     fileprivate lazy var bigDataGroup : AnchorGroup = AnchorGroup()
     fileprivate lazy var beautifulDataGroup : AnchorGroup = AnchorGroup()
 }
 
 // MARK:- 发送网络请求
 extension RecommendViewModel{
+    
+    //请求推荐的数据
     func requestData(finishCallback:@escaping ()->()) {
         
         //创建Group
@@ -87,6 +92,29 @@ extension RecommendViewModel{
         })
         
         
+    }
+    
+    //请求无线轮播的数据
+    func requesCycleData(finishCallback:@escaping()->()) {
+        
+        NetworkTools.requestData(type: .GET, URLString: "http://capi.douyucdn.cn/api/v1/slide/6", parameters: ["version":"2.300"], finishedCallback:{ (result) in
+            //1.获取字典类型
+            guard let resultDict = result as? [String:NSObject] else{
+                return
+            }
+            //2.转成数组
+            guard let dataArray = resultDict["data"] as? [[String:NSObject]] else{
+                return
+            }
+            //字典转模型
+            for dict in dataArray{
+                let cycle = CycleModel(dict:dict)
+                self.cycleModels.append(cycle)
+            }
+            
+            finishCallback()
+            
+        })
     }
 }
 

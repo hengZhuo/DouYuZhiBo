@@ -1,19 +1,62 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CycleCollectionCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CycleCollectionCell" customModule="swift_DYZB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="178" height="119"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <rect key="frame" x="0.0" y="0.0" width="178" height="119"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="UGM-87-u2d">
+                        <rect key="frame" x="0.0" y="0.0" width="178" height="119"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNM-bg-sH8">
+                        <rect key="frame" x="0.0" y="89" width="178" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小码哥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4BD-wp-pGM">
+                                <rect key="frame" x="15" y="7" width="40" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.31196489726027399" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4BD-wp-pGM" firstAttribute="centerY" secondItem="DNM-bg-sH8" secondAttribute="centerY" id="0ir-hO-g5Y"/>
+                            <constraint firstAttribute="height" constant="30" id="7Zd-IK-YXO"/>
+                            <constraint firstItem="4BD-wp-pGM" firstAttribute="leading" secondItem="DNM-bg-sH8" secondAttribute="leading" constant="15" id="ClF-3j-6LX"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="UGM-87-u2d" secondAttribute="trailing" id="00Z-50-u0N"/>
+                <constraint firstItem="DNM-bg-sH8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9EM-4z-OLz"/>
+                <constraint firstAttribute="bottom" secondItem="UGM-87-u2d" secondAttribute="bottom" id="Hx7-cX-lHk"/>
+                <constraint firstAttribute="trailing" secondItem="DNM-bg-sH8" secondAttribute="trailing" id="N6z-sJ-xTn"/>
+                <constraint firstItem="UGM-87-u2d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b1P-ud-76T"/>
+                <constraint firstAttribute="bottom" secondItem="DNM-bg-sH8" secondAttribute="bottom" id="l4Q-zs-jAK"/>
+                <constraint firstItem="UGM-87-u2d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vSb-cq-8lA"/>
+            </constraints>
+            <size key="customSize" width="178" height="119"/>
+            <connections>
+                <outlet property="photoImageView" destination="UGM-87-u2d" id="xMP-Rq-CTa"/>
+                <outlet property="titleLabel" destination="4BD-wp-pGM" id="Z05-be-Jq0"/>
+            </connections>
+            <point key="canvasLocation" x="-36" y="-29.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Img_default" width="172" height="103"/>
+    </resources>
 </document>

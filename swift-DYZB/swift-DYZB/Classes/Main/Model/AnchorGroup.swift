@@ -25,6 +25,9 @@ class AnchorGroup: NSObject {
     //该组显示的图标
     var icon_name : String = "home_header_normal"
     
+    //游戏对应的图标
+    var icon_url : String = ""
+    
     //定义主播的模型对象的数组
     lazy var anchors:[AnchorModel] = [AnchorModel]()
     

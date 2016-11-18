@@ -16,12 +16,30 @@ private let kCollectionCell = "kCollectionCell"
 private let kBeautifulCell = "kBeautifulCell"
 private let kHeaderViewH : CGFloat = 50
 private let kHeaderViewID = "kHeaderViewID"
+private let kCycleViewH = kScreenW * 3 / 8
+private let kGameViewH : CGFloat = 90
 
 class RecommendController: UIViewController {
     
     fileprivate lazy var recommendViewModel:RecommendViewModel = RecommendViewModel()
     
     // MARK:- 懒加载
+    
+    //轮播的View
+    fileprivate lazy var cycleView : RecommendCycleView = {
+       let cycleView = RecommendCycleView.recomendCycleView()
+        cycleView.frame = CGRect(x: 0, y: -(kCycleViewH + kGameViewH), width: kScreenW, height: kCycleViewH)
+        return cycleView
+        
+    }()
+    //轮播游戏View
+    fileprivate lazy var gameView : RecommendGameView = {
+       
+        let gameView = RecommendGameView.recommendGameView()
+        gameView.frame = CGRect(x :0,y: -kGameViewH,width:kScreenW, height:90)
+        return gameView
+        
+    }()
    fileprivate lazy var collectionView: UICollectionView = {
         //1.创建布局
     let layout = UICollectionViewFlowLayout()
@@ -63,8 +81,14 @@ extension RecommendController{
         //1.添加collectionView
         
         view.addSubview(collectionView)
+        //添加无线轮播
+        collectionView.addSubview(cycleView)
         
+        //添加游戏的View
+        collectionView.addSubview(gameView)
         
+        //设置collectionView的内边距
+        collectionView.contentInset = UIEdgeInsetsMake(kCycleViewH + kGameViewH, 0, 0, 0)
     }
 }
 
@@ -72,8 +96,16 @@ extension RecommendController{
 extension RecommendController{
     fileprivate func loadData(){
         
+        //请求推荐数据
         recommendViewModel.requestData(){
             self.collectionView.reloadData()
+            
+            //将数据传递给gameView 
+            self.gameView.group = self.recommendViewModel.anchorGroups
+        }
+        //请求轮播数据
+        recommendViewModel.requesCycleData(){
+            self.cycleView.cyclesModel = self.recommendViewModel.cycleModels
         }
     }
 }
