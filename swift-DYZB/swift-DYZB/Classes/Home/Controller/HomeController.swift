@@ -27,11 +27,10 @@ class HomeController: UIViewController {
             let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavgationBarH + kTitleViewH, width: kScreenW, height: contentH)
         var childVcs = [UIViewController]()
         childVcs.append(RecommendController())
-        for _ in 0..<3{
-            let vc = UIViewController()
-            vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
-            childVcs.append(vc)
-        }
+        childVcs.append(GameController())
+        childVcs.append(AmuseController())
+        childVcs.append(FunnyController())
+        
         let contentView = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
         contentView.delegate = self
         
@@ -57,7 +56,7 @@ extension HomeController{
         view.addSubview(pageTitleView)
         //3.添加contentView
         view.addSubview(pageContentView)
-        pageContentView.backgroundColor = UIColor.purple
+        pageContentView.backgroundColor = UIColor.white
     }
     
    private func setupNavBar() {

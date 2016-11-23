@@ -11,7 +11,7 @@
         <!--首页-->
         <scene sceneID="p2e-CL-xeO">
             <objects>
-                <navigationController storyboardIdentifier="Home" id="h9l-dv-ATH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Home" id="h9l-dv-ATH" customClass="CustomNavigationController" customModule="swift_DYZB" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" image="btn_home_normal" selectedImage="btn_home_selected" id="Jq6-fj-MqZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nNL-rk-yBd">

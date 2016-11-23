@@ -21,6 +21,15 @@ class RecommedGameCollectionCell: UICollectionViewCell {
         }
     }
     
+    var gameModel : GameModel?{
+        didSet{
+            titleLabel.text = gameModel?.tag_name
+            let iconUrl = URL(string: gameModel?.icon_url ?? "")
+           photoImageView.kf.setImage(with: iconUrl, placeholder: UIImage(named:"home_more_btn"), options: nil, progressBlock: nil, completionHandler: nil)
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.photoImageView.layer.cornerRadius = 22.5

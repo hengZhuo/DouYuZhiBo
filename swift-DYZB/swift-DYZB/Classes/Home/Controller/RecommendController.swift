@@ -19,7 +19,7 @@ private let kHeaderViewID = "kHeaderViewID"
 private let kCycleViewH = kScreenW * 3 / 8
 private let kGameViewH : CGFloat = 90
 
-class RecommendController: UIViewController {
+class RecommendController: BaseController {
     
     fileprivate lazy var recommendViewModel:RecommendViewModel = RecommendViewModel()
     
@@ -77,10 +77,11 @@ class RecommendController: UIViewController {
 // MARK:- 设置UI界面
 extension RecommendController{
     fileprivate func setupUI(){
-     view.backgroundColor = UIColor.purple
+     view.backgroundColor = UIColor.white
         //1.添加collectionView
         
         view.addSubview(collectionView)
+        collectionView.isHidden = true
         //添加无线轮播
         collectionView.addSubview(cycleView)
         
@@ -101,7 +102,17 @@ extension RecommendController{
             self.collectionView.reloadData()
             
             //将数据传递给gameView 
-            self.gameView.group = self.recommendViewModel.anchorGroups
+            var group = self.recommendViewModel.anchorGroups
+            group.removeFirst()
+            group.removeFirst()
+            
+            //添加更多的组
+            let moreGroup = AnchorGroup()
+            moreGroup.tag_name = "更多"
+            group.append(moreGroup)
+            self.gameView.group = group
+            self.collectionView.isHidden = false
+            self.stopAnimImageView()
         }
         //请求轮播数据
         recommendViewModel.requesCycleData(){
@@ -162,4 +173,30 @@ extension RecommendController : UICollectionViewDataSource,UICollectionViewDeleg
     }
     
 }
+
+extension RecommendController:UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //先取出对应的主播信息
+        let anchor = recommendViewModel.anchorGroups[indexPath.section].anchors[indexPath.item]
+        //2.判断是电脑直播还是手机直播
+        anchor.isVertical == 0 ? pushNormalRoomVc() :  presentShowRoomVc()
+        
+        
+    }
+    
+    //手机直播
+    private func presentShowRoomVc(){
+        let showRoomVc = RoomShowController()
+        present(showRoomVc, animated: true, completion: nil)
+    }
+    //电脑直播
+    private func pushNormalRoomVc(){
+        let normalVc = RoomNormalController()
+        navigationController?.pushViewController(normalVc, animated: true)
+    }
+    
+}
+
+
+
 

@@ -13,6 +13,7 @@ class CollectionHeaderView: UICollectionReusableView {
 
     @IBOutlet weak var iconImageView: UIImageView!
     
+    @IBOutlet weak var moreButton: UIButton!
     // MARK:- 定义模型属性
     var group : AnchorGroup?{
         didSet{
@@ -29,3 +30,11 @@ class CollectionHeaderView: UICollectionReusableView {
     }
     
 }
+
+
+extension CollectionHeaderView{
+    class func collectionHeaderView() -> CollectionHeaderView{
+        return Bundle.main.loadNibNamed("CollectionHeaderView", owner: nil, options: nil)?.first as! CollectionHeaderView
+    }
+}
+

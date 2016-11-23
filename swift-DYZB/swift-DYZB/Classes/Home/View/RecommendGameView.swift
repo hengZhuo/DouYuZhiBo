@@ -15,15 +15,20 @@ class RecommendGameView: UIView {
     // MARK:- 定义数据的属性
     var group:[AnchorGroup]?{
         didSet{
+            self.collectionView.reloadData()
+        }
+    }
+    var gameGroup:[GameModel]?{
+        didSet{
+            var gps : [AnchorGroup] = [AnchorGroup]()
             
-            group?.removeFirst()
-            group?.removeFirst()
-            
-            //添加更多的组
-            let moreGroup = AnchorGroup()
-            moreGroup.tag_name = "更多"
-            group?.append(moreGroup)
-            
+            for game in gameGroup! {
+                let gp = AnchorGroup()
+                gp.tag_name = game.tag_name
+                gp.icon_url = game.icon_url
+               gps.append(gp)
+            }
+           group = gps
             self.collectionView.reloadData()
         }
     }
